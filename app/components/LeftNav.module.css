@@ -1,0 +1,15 @@
+/* In LeftNav.module.css */
+.container {
+    z-index: 1;
+  position: fixed;
+  top: 0;
+  left: -250px; /* Initially off-screen */
+  width: 250px;
+  height: 100%;
+  /* background-color: #fff; */
+  transition: left 0.3s ease; /* Smooth transition */
+}
+
+.container.open {
+  left: 0; /* Slide in when open */
+}
