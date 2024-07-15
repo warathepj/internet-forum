@@ -36,9 +36,7 @@ export default function Home() {
       ))}
 
 
-      {topics.map((topic, index) => (
-        <TopicsCard key={index} msg={topic} /> 
-      ))}
+      
     </>
   );
 }

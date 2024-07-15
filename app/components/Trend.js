@@ -5,7 +5,7 @@ import styles from './Trend.module.css';
 export default function Trend() {
   return (
     <div className={styles.container}>
-      <p>t</p> 
+      <p>trend</p> 
     </div>
   );
 }
