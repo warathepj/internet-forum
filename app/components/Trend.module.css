@@ -1,4 +1,6 @@
 .container {
-    background-color: #969b53;
+    /* background-color: var(--black); */
     margin-top: 20px;
 }
+/* app/components/Trend.module.css */
+

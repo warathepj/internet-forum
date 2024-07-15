@@ -5,6 +5,8 @@ import Announce from './components/Announce';
 import TopicsCard from './components/TopicsCard';
 import { useMessages } from '../context/MessageContext';
 import { useTopics } from '../context/TopicsContext';
+import SliderCard from './components/SliderCard';
+import Trend from './components/Trend';
 
 export default function Home() {
   const { messages } = useMessages();
@@ -14,6 +16,8 @@ export default function Home() {
 
   return (
     <>
+      <SliderCard />
+      <Trend />
       <Announce />
       {/* {messages.map(message => (
         <Link 
