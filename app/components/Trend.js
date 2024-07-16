@@ -1,21 +1,29 @@
 // app/components/Trend.js
 // 'use client'
 import Link from 'next/link';
-// ... other imports ...
-
+import { useContext } from 'react';
+import { usePosts} from '../../context/PostsContext';
+import { useMessages } from '../../context/MessageContext';
 import PostCard from './PostCard';
 import styles from './Trend.module.css';
 
 export default function Trend() {
-  const postId = 1; // Or fetch the actual post ID
-  const postContent = "Some post content";
+  // const { posts } = useContext(PostsContext);
+  // const { posts } = useContext(MessageContext);
+  const { messages } = useMessages();
+  const { posts } = usePosts();
+
+  
 
   return (
     <div className={styles.container}>
       <p>trend</p> 
-      <Link href="/posts/1" className={styles.postCard}> {/* Wrap PostCard with Link */}
-        <PostCard id={postId} content={postContent} />
-      </Link>
+      {posts.map(({ id, avatar, content }) => (
+        <Link key={id} href={`/posts/${id}`} className={styles.postCard}>
+          <PostCard id={id} avatar={avatar} content={content} />
+        </Link>
+      ))}
+      
     </div>
   );
 }

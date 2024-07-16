@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { MessageProvider } from '../context/MessageContext';
 import { TopicsProvider } from '../context/TopicsContext';
+import { PostsProvider } from '../context/PostsContext';
 // import { LeftNavProvider } from '../context/LeftNavContext';
 import Nav from './components/Nav';
 import ClientWrapper from './client-wrapper';
@@ -17,15 +18,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-      <MessageProvider>
-      <TopicsProvider>
-      <ClientWrapper>
-        <Nav />
-        {children}
-        </ClientWrapper>
-        </TopicsProvider>
+        <PostsProvider>
+        <MessageProvider>
+          <TopicsProvider>
+            <ClientWrapper>
+              <Nav />
+              {children}
+            </ClientWrapper>
+          </TopicsProvider>
         </MessageProvider>
-        </body>
+        </PostsProvider>
+      </body>
     </html>
   );
 }

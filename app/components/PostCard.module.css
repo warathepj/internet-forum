@@ -1,3 +1,8 @@
+.container {
+  text-decoration: none;
+  color: var(--light-orange);
+
+}
 .avatar {
     width: 50px; /* Adjust the size as needed */
     height: 50px;
