@@ -1,3 +1,23 @@
+.overlay {
+  height: 600px;
+  z-index: 2; /* Ensure it's above the main content but below the LeftNav */
+
+  background-color: rgba(223, 95, 95, 0.5); /* Adjust opacity as needed */
+
+}
+.overlayy {
+  height: 600px;
+  z-index: 2; /* Ensure it's above the main content but below the LeftNav */
+
+  background-color: rgba(223, 95, 95, 0.5); /* Adjust opacity as needed */
+
+}
+
+.overlay.active {
+  display: block;
+}
+
+
 .main {
   display: flex;
   flex-direction: column;

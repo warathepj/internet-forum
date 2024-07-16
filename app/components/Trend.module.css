@@ -3,4 +3,8 @@
     margin-top: 20px;
 }
 /* app/components/Trend.module.css */
+/* PostCard.module.css */
+.postCard { /* Or target a specific element within PostCard */
+  cursor: pointer;
+}
 

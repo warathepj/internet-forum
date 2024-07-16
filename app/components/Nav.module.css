@@ -10,9 +10,12 @@
 .icon {
     font-size: xx-large;
     color: var(--light-orange);
+    cursor: pointer; 
+
 }
 
 .chatProcessing {
     font-size: 3rem;
     color: var(--orange);
+    cursor: pointer; 
 }
