@@ -1,36 +1,62 @@
 // app/components/PostCard.js
 
 // import React from 'react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { usePosts } from '../../context/PostsContext';
 import AddComment from './AddComment';
 import JoinButton from './JoinButton';
 import styles from './PostCard.module.css';
 
-function PostCard({ id, avatar, content }) {
+function PostCard({ id, room, topic, avatar, content, image }) {
   
-
+  const { posts } = usePosts();
+  // Find the post with the matching ID
+  const post = posts.find(post => post.id === id); 
+  const [randomTime, setRandomTime] = useState(0);
+  useEffect(() => {
+    const generateRandomTime = () => {
+      const timeInSeconds = Math.floor(Math.random() * 259200) + 1;
+      setRandomTime(timeInSeconds);
+    };
+    generateRandomTime(); 
+  }, []);
+  const formattedTime = 
+    randomTime > 86400 // 24 hours in seconds
+      ? Math.floor(randomTime / 86400) + ' day' 
+      : randomTime > 3600 // 1 hour in seconds
+        ? Math.floor(randomTime / 3600) + ' hr'
+        : randomTime > 59
+          ? Math.floor(randomTime / 60) + ' min' 
+          : randomTime + ' sec';
   return (
     <div className={styles.container}>
       <p>------------------------</p>
       <p>Post ID: {id}</p>
-      <p>avatar</p>
-      <p>avatar : {avatar}</p>
+      <div className={styles.header}>
+<div className={styles.info}>
+
       <img src={avatar || '/next.svg'} alt="Avatar" className={styles.avatar} />
-      <p>{content}</p>
-      <p>------------------------</p>
-      {/* avatar */}
-        <img src="https://plus.unsplash.com/premium_photo-1688045722767-8d8672f6950b?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar" className={styles.avatar} /> 
-      <p>Vehicles</p> 
+<div className={styles.room}>
+
+      <p>{room}</p>
       <p> . </p> 
-      <p>7</p> 
-      <p>hr.</p> 
-      <p>ago</p> 
+      <p>{formattedTime} ago</p>
+</div>
+</div>
       <JoinButton />
-      <h3>Is it feasible to create a world where the primary mode of transportation is trains, to the exclusion of automobiles and aircraft?</h3>
-      <p></p>
-<img 
-  src='https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=1584&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-/>
+
+{/* in app/components/PostCard.js/<p></p>
+ random time in second from 1 to 259200 seconds, if over 59 change to min */}
+      </div>
+      <p>{topic}</p>
+
+      {/* <p>{content}</p> */}
+  
+      {post ? <img src={post.image} alt="Post Image" className={styles.image}/> : "No image"}
+      {/* <img src={image}/> */}
+      <p>------------------------</p>
+      
+
 <AddComment />
       {/* Other content of the PostCard component */}
     </div>

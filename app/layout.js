@@ -6,6 +6,7 @@ import { PostsProvider } from '../context/PostsContext';
 // import { LeftNavProvider } from '../context/LeftNavContext';
 import Nav from './components/Nav';
 import ClientWrapper from './client-wrapper';
+import LoginClientWrapper from './login-client-wrapper';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,12 +23,14 @@ export default function RootLayout({ children }) {
         <MessageProvider>
           <TopicsProvider>
             <ClientWrapper>
+            <LoginClientWrapper>
               {/* <div className="nav"> */}
 
               {/* <Nav className="nav" /> */}
               <Nav />
               {/* </div> */}
               {children}
+            </LoginClientWrapper>
             </ClientWrapper>
           </TopicsProvider>
         </MessageProvider>

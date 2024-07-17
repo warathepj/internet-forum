@@ -18,9 +18,9 @@ export default function Trend() {
   return (
     <div className={styles.container}>
       <p>trend</p> 
-      {posts.map(({ id, avatar, content }) => (
+      {posts.map(({ id, avatar, room, topic, image, content }) => (
         <Link key={id} href={`/posts/${id}`} className={styles.postCard}>
-          <PostCard id={id} avatar={avatar} content={content} />
+          <PostCard id={id} avatar={avatar} room={room} topic={topic} content={content} image={image}/>
         </Link>
       ))}
       

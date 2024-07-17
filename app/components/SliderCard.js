@@ -2,7 +2,7 @@
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:407385081.
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:1345528385.
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:2549218239.
-
+// app/components/SliderCard.js
 import React, { useState } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
@@ -23,10 +23,10 @@ function SliderCard() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <Slider {...settings}>
         <div>
-
+          <p className={styles.testLabel}>test</p>
           <img 
             className={styles.img}
             src="https://plus.unsplash.com/premium_photo-1720760948879-d10510c7049c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 

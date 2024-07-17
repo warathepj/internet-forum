@@ -7,6 +7,7 @@ import Button from './Button';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLeftNav } from '../../context/LeftNavContext';
+import { useLogin } from '../../context/LoginContext';
 
 
 export default function Nav() {
@@ -15,35 +16,24 @@ export default function Nav() {
     const buttonText = "Log In";
     const router = useRouter(); 
     const { isLeftNavOpen, setIsLeftNavOpen } = useLeftNav();
+    const { isLoginOpen, setIsLoginOpen } = useLogin();
   console.log("isLeftNavOpen : ", isLeftNavOpen);
   const handleMenuClick = () => {
     setIsLeftNavOpen(true); 
   };
-  // const toggleLeftNav = () => {
-  //   setIsLeftNavOpen(!isLeftNavOpen);
-  // }
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     if (isLeftNavOpen && !event.target.closest(`.${styles.leftNavContainer}`)) {
-  //       setIsLeftNavOpen(false);
-  //     }
-  //   };
-  //   document.addEventListener('mousedown', handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleClickOutside);
-  //   };
-  // }, [isLeftNavOpen]); 
+  const handleLoginClick = () => {
+    setIsLoginOpen(true); 
+  };
+  
   return (
     <>
     <nav className={styles.container}>
         <IcSharpMenu className={styles.icon} onClick={handleMenuClick} />
         {/* <IcSharpMenu className={styles.icon} onClick={toggleLeftNav} /> */}
         <ChatProcessing className={styles.chatProcessing} onClick={() => router.push('/')} /> 
-        <Button label={buttonText} />
+        <Button label={buttonText} onClick={handleLoginClick} />
 
     </nav>
-        {/* {isLeftNavOpen && <LeftNav isOpen={isLeftNavOpen} />} */}
-        // In Nav.js (or your parent component)
         
 
     </>

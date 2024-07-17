@@ -1,7 +1,23 @@
 .container {
   text-decoration: none;
   color: var(--light-orange);
+  background-color: #6d3c3c;
 
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.room {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .avatar {
     width: 50px; /* Adjust the size as needed */
@@ -9,3 +25,6 @@
     border-radius: 50%; /* Makes the image circular */
     object-fit: cover; /* Ensures the image fills the circle without distortion */
   }
+.image {
+  width: 100%;
+}

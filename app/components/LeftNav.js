@@ -4,13 +4,26 @@ import styles from './LeftNav.module.css';
 import TopicsCard from './TopicsCard';
 import { useTopics } from '../../context/TopicsContext';
 import { useLeftNav } from '../../context/LeftNavContext';
-
+import { useEffect } from 'react';
 import Link from 'next/link';
 
 export default function LeftNav({ isOpen, toggleNav }) {
   const { topics } = useTopics();
   const { isLeftNavOpen, setIsLeftNavOpen } = useLeftNav();
   console.log("isLeftNavOpen LeftNav : ", isLeftNavOpen);
+
+  function toggleBodyScrolling(disable) {
+    if (disable) {
+      document.body.style.overflow = 'hidden'; 
+    } else {
+      document.body.style.overflow = 'auto'; 
+    }
+  }
+
+  useEffect(() => {
+    toggleBodyScrolling(isLeftNavOpen); 
+  }, [isLeftNavOpen]); 
+
   const handleHeaderClick = () => {
     setIsLeftNavOpen(false);
   };
@@ -24,13 +37,16 @@ export default function LeftNav({ isOpen, toggleNav }) {
         </div>
           <p>TOPICS</p>
           {topics.map(topic => (
+            // <div className={styles.topicsCard}>
+
         <Link 
           key={topic} 
           href={`/topics/${topic}`}
           onClick={() => setIsLeftNavOpen(false)}
         > 
-          <TopicsCard msg={topic} /> 
+          <TopicsCard msg={topic}  /> 
         </Link>
+            // </div>
       ))}
         </nav>
         </>

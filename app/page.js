@@ -9,7 +9,8 @@ import LeftNav from './components/LeftNav';
 import { useMessages } from '../context/MessageContext';
 import { useTopics } from '../context/TopicsContext';
 import { useLeftNav } from '../context/LeftNavContext';
-
+import { useLogin } from '../context/LoginContext';
+import Login from './components/Login';
 import SliderCard from './components/SliderCard';
 import Trend from './components/Trend';
 import styles from './page.module.css'
@@ -17,32 +18,32 @@ import styles from './page.module.css'
 export default function Home() {
   const { messages } = useMessages();
   const { topics } = useTopics();
-  const { isLeftNavOpen } = useLeftNav();
+  const { isLeftNavOpen, setIsLeftNavOpen } = useLeftNav();
   console.log("isLeftNavOpen : ", isLeftNavOpen);
+  const { isLoginOpen, setIsLoginOpen } = useLogin();
   
   
   // In your parent component or a utility function
-// function toggleBodyScrolling(disable) {
-//   if (disable) {
-//     document.body.style.overflow = 'hidden'; 
-//   } else {
-//     document.body.style.overflow = 'auto'; // Restore normal scrolling
-//   }
-// }
+function toggleBodyScrolling(disable) {
+  if (disable) {
+    document.body.style.overflow = 'hidden'; 
+  } else {
+     document.body.style.overflow = 'auto'; // Restore normal scrolling
+  }
+}
 
 // Call this function when the LeftNav opens/closes
 // For example, inside the toggleNav function:
-// function toggleNav() {
-//   setIsLeftNavOpen(!isLeftNavOpen);
-//   toggleBodyScrolling(!isLeftNavOpen); // Pass the opposite of the current state
-// }
+function toggleNav() {
+  setIsLeftNavOpen(!isLeftNavOpen);
+   toggleBodyScrolling(!isLeftNavOpen); // Pass the opposite of the current state
+}
 
 
   return (
     <>
-
-      {/* <LeftNavProvider> */}
-      {/* <div className={`styles.overlay ${isLeftNavOpen ? 'active' : ''}`}></div> */}
+    
+<Login isOpen={isLoginOpen} />
       {isLeftNavOpen && ( 
         <div className={styles.overlay}></div> 
       )}

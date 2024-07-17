@@ -26,3 +26,12 @@
   display: flex;
   justify-content: flex-end; 
 }
+.topicsCard {
+  margin-top: 5px; 
+  padding-bottom: 30px;
+  height: 46px;
+  /* padding-top: 2px;    */
+  /* padding-bottom: 3px; */
+  background-color: #fff;
+
+}
