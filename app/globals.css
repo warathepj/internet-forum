@@ -7,10 +7,14 @@
   --light-orange: rgb(240, 232, 207);
 }
 body {
+  /* position: relative; */
   background-color: var(--black);
   color: var(--light-orange);
 }
 a {
   text-decoration: none;
-
 }
+/* .nav {  */
+  /* position: absolute; */
+/* position: fixed; */
+/* }  */

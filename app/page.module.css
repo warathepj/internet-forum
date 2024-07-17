@@ -1,5 +1,17 @@
+/* app/page.module.css */
+
+.leftNav {
+  z-index: 10;
+}
+/* .sliderCard {
+  position: absolute;
+} */
 .overlay {
-  height: 600px;
+  width: calc(100vw - 200px); 
+  position: fixed;
+  top: -250px;
+  left: 200px;
+  height: 800px;
   z-index: 2; /* Ensure it's above the main content but below the LeftNav */
 
   background-color: rgba(223, 95, 95, 0.5); /* Adjust opacity as needed */

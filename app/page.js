@@ -1,11 +1,15 @@
+// app/page.js
 'use client'
 import Link from 'next/link';
 import AnnounceCard from './components/AnnounceCard';
 import Announce from './components/Announce';
 import TopicsCard from './components/TopicsCard';
+import LeftNav from './components/LeftNav';
+
 import { useMessages } from '../context/MessageContext';
 import { useTopics } from '../context/TopicsContext';
 import { useLeftNav } from '../context/LeftNavContext';
+
 import SliderCard from './components/SliderCard';
 import Trend from './components/Trend';
 import styles from './page.module.css'
@@ -15,6 +19,7 @@ export default function Home() {
   const { topics } = useTopics();
   const { isLeftNavOpen } = useLeftNav();
   console.log("isLeftNavOpen : ", isLeftNavOpen);
+  
   
   // In your parent component or a utility function
 // function toggleBodyScrolling(disable) {
@@ -35,12 +40,23 @@ export default function Home() {
 
   return (
     <>
+
       {/* <LeftNavProvider> */}
       {/* <div className={`styles.overlay ${isLeftNavOpen ? 'active' : ''}`}></div> */}
-      <SliderCard />
       {isLeftNavOpen && ( 
         <div className={styles.overlay}></div> 
       )}
+        <div className={styles.sliderCard}>
+        <div className={styles.leftNav}>
+
+<LeftNav isOpen={isLeftNavOpen} />
+{/* <LeftNav isOpen={isLeftNavOpen} toggleNav={() => setIsLeftNavOpen(!isLeftNavOpen)} /> */}
+        </div>
+        
+
+      <SliderCard />
+</div> 
+
       <Trend />
       <Announce />
       {/* {messages.map(message => (
@@ -64,6 +80,6 @@ export default function Home() {
 
 
 {/* </LeftNavProvider> */}
-    </>
+</>
   );
 }

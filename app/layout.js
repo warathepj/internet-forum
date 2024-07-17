@@ -22,7 +22,11 @@ export default function RootLayout({ children }) {
         <MessageProvider>
           <TopicsProvider>
             <ClientWrapper>
+              {/* <div className="nav"> */}
+
+              {/* <Nav className="nav" /> */}
               <Nav />
+              {/* </div> */}
               {children}
             </ClientWrapper>
           </TopicsProvider>
