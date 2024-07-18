@@ -8,33 +8,43 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLeftNav } from '../../context/LeftNavContext';
 import { useLogin } from '../../context/LoginContext';
+import { usePassword } from '../../context/PasswordContext';
+import AddComment from './AddComment';
 
 
 export default function Nav() {
-  
+
   // const [isLeftNavOpen, setIsLeftNavOpen] = useState(false);
-    const buttonText = "Log In";
-    const router = useRouter(); 
-    const { isLeftNavOpen, setIsLeftNavOpen } = useLeftNav();
-    const { isLoginOpen, setIsLoginOpen } = useLogin();
+  const buttonText = "Log In";
+  const router = useRouter();
+  const { isLeftNavOpen, setIsLeftNavOpen } = useLeftNav();
+  const { isLoginOpen, setIsLoginOpen } = useLogin();
   console.log("isLeftNavOpen : ", isLeftNavOpen);
+  const { isLoginButtonOpen } = usePassword();
+  const { isCreateButtonOpen } = usePassword();
   const handleMenuClick = () => {
-    setIsLeftNavOpen(true); 
+    setIsLeftNavOpen(true);
   };
   const handleLoginClick = () => {
-    setIsLoginOpen(true); 
+    setIsLoginOpen(true);
   };
-  
+
   return (
     <>
-    <nav className={styles.container}>
+      <nav className={styles.container}>
         <IcSharpMenu className={styles.icon} onClick={handleMenuClick} />
         {/* <IcSharpMenu className={styles.icon} onClick={toggleLeftNav} /> */}
-        <ChatProcessing className={styles.chatProcessing} onClick={() => router.push('/')} /> 
-        <Button label={buttonText} onClick={handleLoginClick} />
-
-    </nav>
+        <ChatProcessing className={styles.chatProcessing} onClick={() => router.push('/')} />
+        {/* hide app/components/Nav */}
+        {isLoginButtonOpen && ( // Use renamed state in conditional rendering
+          <Button label="Log In" onClick={handleLoginClick} />
+        )}
+        {isCreateButtonOpen && ( // Use renamed state in conditional rendering
+          <AddComment />
+        )}
         
+      </nav>
+
 
     </>
   );

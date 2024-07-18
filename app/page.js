@@ -6,10 +6,13 @@ import Announce from './components/Announce';
 import TopicsCard from './components/TopicsCard';
 import LeftNav from './components/LeftNav';
 
+import { useState } from 'react';
 import { useMessages } from '../context/MessageContext';
 import { useTopics } from '../context/TopicsContext';
 import { useLeftNav } from '../context/LeftNavContext';
 import { useLogin } from '../context/LoginContext';
+import { PasswordProvider } from '../context/PasswordContext';
+import { usePassword } from '../context/PasswordContext';
 import Login from './components/Login';
 import SliderCard from './components/SliderCard';
 import Trend from './components/Trend';
@@ -21,42 +24,52 @@ export default function Home() {
   const { isLeftNavOpen, setIsLeftNavOpen } = useLeftNav();
   console.log("isLeftNavOpen : ", isLeftNavOpen);
   const { isLoginOpen, setIsLoginOpen } = useLogin();
-  
-  
-  // In your parent component or a utility function
-function toggleBodyScrolling(disable) {
-  if (disable) {
-    document.body.style.overflow = 'hidden'; 
-  } else {
-     document.body.style.overflow = 'auto'; // Restore normal scrolling
-  }
-}
+  const { passwords } = usePassword();
+  console.log("passwords : ", passwords);
 
-// Call this function when the LeftNav opens/closes
-// For example, inside the toggleNav function:
-function toggleNav() {
-  setIsLeftNavOpen(!isLeftNavOpen);
-   toggleBodyScrolling(!isLeftNavOpen); // Pass the opposite of the current state
-}
+  // In your parent component or a utility function
+  function toggleBodyScrolling(disable) {
+    if (disable) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto'; // Restore normal scrolling
+    }
+  }
+
+  // Call this function when the LeftNav opens/closes
+  // For example, inside the toggleNav function:
+  function toggleNav() {
+    setIsLeftNavOpen(!isLeftNavOpen);
+    toggleBodyScrolling(!isLeftNavOpen); // Pass the opposite of the current state
+  }
 
 
   return (
     <>
-    
-<Login isOpen={isLoginOpen} />
-      {isLeftNavOpen && ( 
-        <div className={styles.overlay}></div> 
+    {/* <PasswordProvider> */}
+    <ul>
+      {passwords.map((password, index) => (
+        <li key={index}>{password}</li>
+      ))}
+    </ul>
+      {/* <div className={styles.login}> */}
+
+      {isLoginOpen && <Login />}
+      {/* </div> */}
+      {/* <Login isOpen={isLoginOpen} /> */}
+      {isLeftNavOpen && (
+        <div className={styles.overlay}></div>
       )}
-        <div className={styles.sliderCard}>
+      <div className={styles.sliderCard}>
         <div className={styles.leftNav}>
 
-<LeftNav isOpen={isLeftNavOpen} />
-{/* <LeftNav isOpen={isLeftNavOpen} toggleNav={() => setIsLeftNavOpen(!isLeftNavOpen)} /> */}
+          <LeftNav isOpen={isLeftNavOpen} />
+          {/* <LeftNav isOpen={isLeftNavOpen} toggleNav={() => setIsLeftNavOpen(!isLeftNavOpen)} /> */}
         </div>
-        
 
-      <SliderCard />
-</div> 
+
+        <SliderCard />
+      </div>
 
       <Trend />
       <Announce />
@@ -71,16 +84,16 @@ function toggleNav() {
 
       <h4>TOPICS</h4>
       {topics.map(topic => (
-        <Link 
-          key={topic} 
+        <Link
+          key={topic}
           href={`/topics/${topic}`}
-        > 
-          <TopicsCard msg={topic} /> 
+        >
+          <TopicsCard msg={topic} />
         </Link>
       ))}
+{/* </PasswordProvider> */}
 
-
-{/* </LeftNavProvider> */}
-</>
+      {/* </LeftNavProvider> */}
+    </>
   );
 }

@@ -1,12 +1,13 @@
+// app/layout/
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { MessageProvider } from '../context/MessageContext';
 import { TopicsProvider } from '../context/TopicsContext';
 import { PostsProvider } from '../context/PostsContext';
+import { PasswordProvider } from '../context/PasswordContext';
 // import { LeftNavProvider } from '../context/LeftNavContext';
 import Nav from './components/Nav';
 import ClientWrapper from './client-wrapper';
-import LoginClientWrapper from './login-client-wrapper';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,22 +20,23 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+    <PasswordProvider>
         <PostsProvider>
         <MessageProvider>
           <TopicsProvider>
             <ClientWrapper>
-            <LoginClientWrapper>
               {/* <div className="nav"> */}
 
               {/* <Nav className="nav" /> */}
               <Nav />
               {/* </div> */}
               {children}
-            </LoginClientWrapper>
             </ClientWrapper>
           </TopicsProvider>
         </MessageProvider>
         </PostsProvider>
+    </PasswordProvider>
+
       </body>
     </html>
   );

@@ -1,20 +1,16 @@
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:928137950.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:1477489244.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:3300283735.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:685633896.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:3541837438.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:2208232176.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:3610440975.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:2748106222.
-
-// app/components/Login.js
+// app/components/Login.js/
 import styles from './Login.module.css';
-import { useState } from 'react';
-
+import { useState, useContext } from 'react';
+import { useLogin } from '../../context/LoginContext';
+import { PasswordContext } from '../../context/PasswordContext';
+import { usePassword } from '../../context/PasswordContext';
 
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const { toggleLogin } = useLogin();
+  const { toggleLoginButton, passwords } = usePassword();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -23,14 +19,28 @@ export default function Login() {
 
     // For now, let's just log the submitted credentials.
     console.log('Submitted credentials:', { username, password });
-
-    // Reset the form fields
-    setUsername('');
-    setPassword('');
+    // if app/components/Login.js/
+    if (passwords.includes(password)) {
+      // Valid password
+      console.log('Login successful!');
+      setErrorMessage(''); // Clear any previous error message
+      setUsername('');
+      setPassword('');
+      toggleLogin(); // Close the login modal
+      toggleLoginButton();
+    } else {
+      // Invalid password
+      setErrorMessage('Incorrect password');
+    }
   };
 
   return (
     <div className={styles.container}>
+      <div className={styles.header}>
+        <div className={styles.x} onClick={toggleLogin}>
+          <h1>X</h1>
+        </div>
+      </div>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -55,6 +65,7 @@ export default function Login() {
           />
         </div>
         <button type="submit">Login</button>
+        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
       </form>
     </div>
   );
