@@ -9,12 +9,19 @@
   justify-content: space-between;
   align-items: center;
 }
-.info {
+/* In your PostCard.module.css file */
+
+.postInfo { 
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.room {
+
+.postInfo .poster {
+  margin: 5px 0; /* Adjust spacing as needed */
+}
+
+.info {
   display: flex;
   justify-content: space-around;
   align-items: center;

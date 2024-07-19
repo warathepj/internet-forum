@@ -46,14 +46,6 @@ export default function Home() {
 
   return (
     <>
-    {/* <PasswordProvider> */}
-    <ul>
-      {passwords.map((password, index) => (
-        <li key={index}>{password}</li>
-      ))}
-    </ul>
-      {/* <div className={styles.login}> */}
-
       {isLoginOpen && <Login />}
       {/* </div> */}
       {/* <Login isOpen={isLoginOpen} /> */}

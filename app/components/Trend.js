@@ -19,6 +19,8 @@ export default function Trend() {
     <div className={styles.container}>
       <p>trend</p> 
       {posts.map(({ id, avatar, room, topic, image, content }) => (
+// when click app/components/Trend.js
+
         <Link key={id} href={`/posts/${id}`} className={styles.postCard}>
           <PostCard id={id} avatar={avatar} room={room} topic={topic} content={content} image={image}/>
         </Link>

@@ -22,6 +22,7 @@ export default function Nav() {
   console.log("isLeftNavOpen : ", isLeftNavOpen);
   const { isLoginButtonOpen } = usePassword();
   const { isCreateButtonOpen } = usePassword();
+  console.log("isCreateButtonOpen : ", isCreateButtonOpen);
   const handleMenuClick = () => {
     setIsLeftNavOpen(true);
   };
