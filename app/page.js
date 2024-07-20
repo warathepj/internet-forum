@@ -1,4 +1,5 @@
-// app/page.js
+// app/page.js/
+// app/page.js/p tag
 'use client'
 import Link from 'next/link';
 import AnnounceCard from './components/AnnounceCard';
@@ -13,6 +14,9 @@ import { useLeftNav } from '../context/LeftNavContext';
 import { useLogin } from '../context/LoginContext';
 import { PasswordProvider } from '../context/PasswordContext';
 import { usePassword } from '../context/PasswordContext';
+import { useUsers } from '../context/UsersContext';
+import { UsersProvider } from '../context/UsersContext';
+import { UsersContext } from '../context/UsersContext';
 import Login from './components/Login';
 import SliderCard from './components/SliderCard';
 import Trend from './components/Trend';
@@ -26,7 +30,8 @@ export default function Home() {
   const { isLoginOpen, setIsLoginOpen } = useLogin();
   const { passwords } = usePassword();
   console.log("passwords : ", passwords);
-
+  // const { users } = useContext(UsersContext);
+  const { users } = useUsers();
   // In your parent component or a utility function
   function toggleBodyScrolling(disable) {
     if (disable) {
@@ -46,6 +51,22 @@ export default function Home() {
 
   return (
     <>
+    <div>
+      {users.map(user => (
+        <div key={user.id}>
+          <h2>{user.name}</h2>
+          <ul>
+            {user.comments.map((comment, index) => (
+              <li key={index}>
+                <strong>Post ID: {comment.postId}</strong> 
+                <p>{comment.comment}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
       {isLoginOpen && <Login />}
       {/* </div> */}
       {/* <Login isOpen={isLoginOpen} /> */}

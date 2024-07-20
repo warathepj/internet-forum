@@ -5,6 +5,8 @@ import { MessageProvider } from '../context/MessageContext';
 import { TopicsProvider } from '../context/TopicsContext';
 import { PostsProvider } from '../context/PostsContext';
 import { PasswordProvider } from '../context/PasswordContext';
+import { UsersProvider } from '../context/UsersContext';
+// import { UsersProvider } from '../context/UsersContext.js';
 // import { LeftNavProvider } from '../context/LeftNavContext';
 import Nav from './components/Nav';
 import ClientWrapper from './client-wrapper';
@@ -21,6 +23,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
     <PasswordProvider>
+    <UsersProvider>
         <PostsProvider>
         <MessageProvider>
           <TopicsProvider>
@@ -35,6 +38,7 @@ export default function RootLayout({ children }) {
           </TopicsProvider>
         </MessageProvider>
         </PostsProvider>
+        </UsersProvider>
     </PasswordProvider>
 
       </body>
