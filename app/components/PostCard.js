@@ -20,13 +20,13 @@ function PostCard({ id, room, poster, topic, avatar, content, image }) {
   const { posts } = usePosts();
   // Find the post with the matching ID
   const post = posts.find(post => post.id === id);
-console.log("post : ", post)
+  console.log("post : ", post)
 
   // Find the user who created the post (using posterId from post)
   const [randomTime, setRandomTime] = useState(0);
   const { users } = useUsers();
   const posterUser = users.find(user => user.id === post.posterId);
-console.log("posterUser : ", posterUser)
+  console.log("posterUser : ", posterUser)
   useEffect(() => {
     const generateRandomTime = () => {
       const timeInSeconds = Math.floor(Math.random() * 100_000) + 1;
@@ -60,54 +60,36 @@ console.log("posterUser : ", posterUser)
         ))}
       </div>
 
-{/* NEW */}
-<div className={styles.header}>
-<div className={styles.info}>
-
-      <p>Post ID: {id}</p>
-      {/* render img in app/components/PostCard.js/, posterId in */}
-      {/* context/PostsContext.js same to id in context/UsersContext.js/ */}
-      {/* img src is from avatar in context/UsersContext.js/ */}
-      {posterUser && (
-        <img 
-          src={posterUser.avatar || '/next.svg'} 
-          alt={`${posterUser.name}'s Avatar`} 
-          className={styles.avatar} 
-        />
-      )}
-          <div className={styles.postInfoContainer}>
-          <div className={styles.postInfo}>
-
-      </div>
-      </div>
-      </div>
-      </div>
-{/* NEW */}
-      {/* OLD */}
+      {/* NEW */}
+          <p>Post ID: {id}</p>
       <div className={styles.header}>
         <div className={styles.info}>
-
-          <img src={avatar || '/next.svg'} alt="Avatar" className={styles.avatar} />
+          {/* render img in app/components/PostCard.js/, posterId in */}
+          {/* context/PostsContext.js same to id in context/UsersContext.js/ */}
+          {/* img src is from avatar in context/UsersContext.js/ */}
+          {posterUser && (
+            <img
+              src={posterUser.avatar || '/next.svg'}
+              alt={`${posterUser.name}'s Avatar`}
+              className={styles.avatar}
+            />
+          )}
           <div className={styles.postInfoContainer}>
             <div className={styles.postInfo}>
-              <p>{room}</p>
+            <p>{room}</p>
               <p> . </p>
               <p>{formattedTime} ago</p>
-              {/* // move app/components/PostCard.js */}
-
             </div>
-            <p className={styles.poster}>{poster}</p>
+          {posterUser && (
+            <p className={styles.poster}>{posterUser.name}</p>
+          )}
+
           </div>
         </div>
         <JoinButton />
 
-        {/* in app/components/PostCard.js/<p></p>
- random time in second from 1 to 259200 seconds, if over 59 change to min */}
       </div>
       <p>{topic}</p>
-
-      {/* <p>{content}</p> */}
-
       {post ? <img src={post.image} alt="Post Image" className={styles.image} /> : "No image"}
       <p>{content}</p>
       <VoteButton />
@@ -118,7 +100,8 @@ console.log("posterUser : ", posterUser)
       {/* go to posts/{id} */}
       <ShareButton />
       <AddComment />
-      {/* OLD */}
+      {/* NEW */}
+      
     </div>
   );
 }

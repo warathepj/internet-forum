@@ -1,3 +1,4 @@
+// app/topic.js
 'use client'
 import { useParams, useSearchParams } from 'next/navigation';
 import { useTopics } from '../../../context/TopicsContext';
