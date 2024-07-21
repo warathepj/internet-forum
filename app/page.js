@@ -51,22 +51,6 @@ export default function Home() {
 
   return (
     <>
-    <div>
-      {users.map(user => (
-        <div key={user.id}>
-          <h2>{user.name}</h2>
-          <ul>
-            {user.comments.map((comment, index) => (
-              <li key={index}>
-                <strong>Post ID: {comment.postId}</strong> 
-                <p>{comment.comment}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-
       {isLoginOpen && <Login />}
       {/* </div> */}
       {/* <Login isOpen={isLoginOpen} /> */}

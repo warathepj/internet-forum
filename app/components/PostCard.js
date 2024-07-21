@@ -15,7 +15,9 @@ import AddComment from './AddComment';
 import JoinButton from './JoinButton';
 import styles from './PostCard.module.css';
 
-function PostCard({ id, room, poster, topic, avatar, content, image }) {
+function PostCard({ 
+  id, room, poster, posterId, topic, avatar, content, image 
+}) {
 
   const { posts } = usePosts();
   // Find the post with the matching ID
@@ -25,7 +27,7 @@ function PostCard({ id, room, poster, topic, avatar, content, image }) {
   // Find the user who created the post (using posterId from post)
   const [randomTime, setRandomTime] = useState(0);
   const { users } = useUsers();
-  const posterUser = users.find(user => user.id === post.posterId);
+  const posterUser = users.find(user => user.id === posterId);
   console.log("posterUser : ", posterUser)
   useEffect(() => {
     const generateRandomTime = () => {
@@ -44,22 +46,7 @@ function PostCard({ id, room, poster, topic, avatar, content, image }) {
           : randomTime + ' sec';
   return (
     <div className={styles.container}>
-      <div>
-        {users.map(user => (
-          <div key={user.id}>
-            <h2>{user.name}</h2>
-            <ul>
-              {user.comments.map((comment, index) => (
-                <li key={index}>
-                  <strong>Post ID: {comment.postId}</strong>
-                  <p>{comment.comment}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
+      <p>Poster ID from [id] page : {posterId}</p> 
       {/* NEW */}
           <p>Post ID: {id}</p>
       <div className={styles.header}>
